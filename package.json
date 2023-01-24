@@ -10,6 +10,7 @@
     "build1-multi-no-source-maps": " babel ./src --out-dir ./build1",
     "build1-single": "cross-env NPM_CONFIG_SINGLE=true babel ./src --out-dir ./build1 --source-maps",
     "build1-single-no-source-maps": "cross-env NPM_CONFIG_SINGLE=true babel ./src --out-dir ./build1",
+    "build1-skip": "cross-env NPM_CONFIG_SKIP=true babel ./src --out-dir ./build1 --source-maps",
 
     "build2-multi": "babel ./build1 --out-dir ./build2 --source-maps",
     "build2-multi-no-source-maps": "babel ./build1 --out-dir ./build2",
@@ -36,6 +37,8 @@
     "case15": "npm run cleanup && npm run build1-single-no-source-maps && npm run build2-single",
     "case16": "npm run cleanup && npm run build1-single-no-source-maps && npm run build2-single-no-source-maps",
 
+    "case17": "npm run cleanup && npm run build1-skip && npm run build2-multi",
+
     "succeeds1": "npm run case2",
     "succeeds2": "npm run case3",
     "succeeds3": "npm run case4",
@@ -52,7 +55,8 @@
     "succeeds14": "npm run case16",
 
     "fails1": "npm run case1",
-    "fails2": "npm run case9"
+    "fails2": "npm run case9",
+    "fails3": "npm run case17"
   },
   "dependencies": {
     "@babel/cli": "^7.20.7",
