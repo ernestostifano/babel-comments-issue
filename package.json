@@ -1,0 +1,63 @@
+{
+  "name": "babel-comments-issue",
+  "version": "0.0.0",
+  "main": "build/index.js",
+  "license": "ISC",
+  "scripts": {
+    "cleanup": "rimraf build1 build2",
+
+    "build1-multi": "babel ./src --out-dir ./build1 --source-maps",
+    "build1-multi-no-source-maps": " babel ./src --out-dir ./build1",
+    "build1-single": "cross-env NPM_CONFIG_SINGLE=true babel ./src --out-dir ./build1 --source-maps",
+    "build1-single-no-source-maps": "cross-env NPM_CONFIG_SINGLE=true babel ./src --out-dir ./build1",
+
+    "build2-multi": "babel ./build1 --out-dir ./build2 --source-maps",
+    "build2-multi-no-source-maps": "babel ./build1 --out-dir ./build2",
+    "build2-single": "cross-env NPM_CONFIG_SINGLE=true babel ./build1 --out-dir ./build2 --source-maps",
+    "build2-single-no-source-maps": "cross-env NPM_CONFIG_SINGLE=true babel ./build1 --out-dir ./build2",
+
+    "case1": "npm run cleanup && npm run build1-multi && npm run build2-multi",
+    "case2": "npm run cleanup && npm run build1-multi && npm run build2-multi-no-source-maps",
+    "case3": "npm run cleanup && npm run build1-multi && npm run build2-single",
+    "case4": "npm run cleanup && npm run build1-multi && npm run build2-single-no-source-maps",
+
+    "case5": "npm run cleanup && npm run build1-multi-no-source-maps && npm run build2-multi",
+    "case6": "npm run cleanup && npm run build1-multi-no-source-maps && npm run build2-multi-no-source-maps",
+    "case7": "npm run cleanup && npm run build1-multi-no-source-maps && npm run build2-single",
+    "case8": "npm run cleanup && npm run build1-multi-no-source-maps && npm run build2-single-no-source-maps",
+
+    "case9": "npm run cleanup && npm run build1-single && npm run build2-multi",
+    "case10": "npm run cleanup && npm run build1-single && npm run build2-multi-no-source-maps",
+    "case11": "npm run cleanup && npm run build1-single && npm run build2-single",
+    "case12": "npm run cleanup && npm run build1-single && npm run build2-single-no-source-maps",
+
+    "case13": "npm run cleanup && npm run build1-single-no-source-maps && npm run build2-multi",
+    "case14": "npm run cleanup && npm run build1-single-no-source-maps && npm run build2-multi-no-source-maps",
+    "case15": "npm run cleanup && npm run build1-single-no-source-maps && npm run build2-single",
+    "case16": "npm run cleanup && npm run build1-single-no-source-maps && npm run build2-single-no-source-maps",
+
+    "succeeds1": "npm run case2",
+    "succeeds2": "npm run case3",
+    "succeeds3": "npm run case4",
+    "succeeds4": "npm run case5",
+    "succeeds5": "npm run case6",
+    "succeeds6": "npm run case7",
+    "succeeds7": "npm run case8",
+    "succeeds8": "npm run case10",
+    "succeeds9": "npm run case11",
+    "succeeds10": "npm run case12",
+    "succeeds11": "npm run case13",
+    "succeeds12": "npm run case14",
+    "succeeds13": "npm run case15",
+    "succeeds14": "npm run case16",
+
+    "fails1": "npm run case1",
+    "fails2": "npm run case9"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.12",
+    "cross-env": "^7.0.3",
+    "rimraf": "^4.1.2"
+  }
+}
